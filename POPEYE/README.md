@@ -132,9 +132,9 @@ different web pages:<br>
 
 In the terminal, go to the project folder and run:
 
-    ```
+    
     docker compose up -d 
-    ```
+    
 Once launched, you can:
 
 ✓ Poll at http://localhost:5000; <br>
