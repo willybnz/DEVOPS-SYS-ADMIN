@@ -16,10 +16,6 @@ The web application works a bit like this:
 
 ![application](pictures/application.png)
 
-<p align="center">
-  <u> Here is a small illustration of how our application works </u>
-</p>
-
 The different codes are provided to you in the pool, result and worker folders.
 
 ## CONFIGURATION 
