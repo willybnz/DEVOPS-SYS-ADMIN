@@ -1,7 +1,7 @@
 #
 
 ## POPEYE 
-![popeye](pictures/Portrait.popeye.png)
+![popeye](pictures/popeye.png)
 Popeye is a project that aims to introduce you to the basics of docker and docker compose.
 The goal of the project is to containerize and deploy a simple web application.
 
