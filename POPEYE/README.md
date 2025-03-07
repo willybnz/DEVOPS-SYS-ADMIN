@@ -132,7 +132,7 @@ different web pages:<br>
 
 In the terminal, go to the project folder and run:
 
-    ```sh
+    ```
     docker compose up -d 
     ```
 Once launched, you can:
