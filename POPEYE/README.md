@@ -2,7 +2,7 @@
 
 ## POPEYE 
 <p align="center">
-  <img src="pictures/Portrait.popeye.png" alt="popeye">
+  <img src="pictures/popeye.png" alt="popeye">
 </p>
 
 
