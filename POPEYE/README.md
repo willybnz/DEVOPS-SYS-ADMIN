@@ -1,21 +1,18 @@
-#
-
 ## POPEYE 
 <p align="center">
   <img src="pictures/popeye.png" alt="popeye">
 </p>
-
 
 Popeye is a project that aims to introduce you to the basics of docker and docker compose.
 The goal of the project is to containerize and deploy a simple web application.
 
 The web application works a bit like this:
 
-Poll (Flask/Python): A web interface that allows users to vote.
-Redis (Temporary database): Stores votes before they are processed.
-Worker (Java/Maven): Retrieves votes from Redis and saves them in PostgreSQL.
-PostgreSQL (Persistent database): Stores votes permanently.
-Result (Node.js): A web interface that displays the results of the votes.
+✓ Poll (Flask/Python): A web interface that allows users to vote.
+✓ Redis (Temporary database): Stores votes before they are processed.
+✓ Worker (Java/Maven): Retrieves votes from Redis and saves them in PostgreSQL.
+✓ PostgreSQL (Persistent database): Stores votes permanently.
+✓ Result (Node.js): A web interface that displays the results of the votes.
 
 ![application](pictures/application.png)
 
