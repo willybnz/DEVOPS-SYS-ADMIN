@@ -66,7 +66,7 @@ The specifications for each image are as described below.
 
 The image will be built using a multi-stage build.
 
-First stage - compilation
+<u> First stage - compilation </u>
 
 - [x] The first stage must be based on maven:3.9.6-eclipse-temurin-21-alpine and be named builder.
 - [x] It must be used to build (of course) and package the Worker application using the following
@@ -77,7 +77,7 @@ commands: <br>
 It generates a file in the target directory named worker-jar-with-dependencies.jar (relative to your
 WORKDIR).
 
-Second stage - run
+<u> Second stage - run </u>
 
 - [x] The second stage must be based on eclipse-temurin:21-jre-alpine.
 - [x] This is the one really running the worker using the command:<br>
@@ -89,50 +89,49 @@ You now have 3 Dockerfiles that create 3 isolated images.
 It is now time to make them all work together using Docker Compose!
 
 Create a docker-compose.yml file that will be responsible for running and linking your containers.
-Your Docker Compose file should contain:<br>
-5 services:<br>
+Your Docker Compose file should contain 5 services:<br>
 
-✓ poll:
-– builds your poll image;
-– redirects port 5000 of the host to the port 80 of the container.
-– correctly sets the necessary environment variable.
+✓ <u> poll </u> <br>
+– builds your poll image;<br>
+– redirects port 5000 of the host to the port 80 of the container.<br>
+– correctly sets the necessary environment variable.<br>
 
-✓ redis:
-– uses an existing official image of Redis 7;
-– opens port 6379.
+✓ <u> redis </u> <br>:
+– uses an existing official image of Redis 7;<br>
+– opens port 6379.<br>
 
-✓ worker:
-– builds your worker image;
-– correctly sets the same environment variables as both the poll and result services.
+✓ <u> worker </u> <br>:
+– builds your worker image;<br>
+– correctly sets the same environment variables as both the poll and result services.<br>
 
-✓ db:
-– represents the database that will be used by the apps;
-– uses an existing official image of PostgreSQL 16;
-– has its database schema created during container first start;
-– correctly sets the appropriate environment variables.
+✓ <u> db </u> <br>
+– represents the database that will be used by the apps;<br>
+– uses an existing official image of PostgreSQL 16;<br>
+– has its database schema created during container first start;<br>
+– correctly sets the appropriate environment variables.<br>
 
-✓ result:
-– builds your result image;
-– redirects port 5001 of the host to the port 80 of the container;
-– correctly sets the necessary environment variables.
+✓ <u> result </u> <br>
+– builds your result image;<br>
+– redirects port 5001 of the host to the port 80 of the container;<br>
+– correctly sets the necessary environment variables.<br>
 
 Databases must be launched before the services that use them, because these services
 are depending on them.
 
-3 networks:
-✓ poll-tier to allow poll to communicate with redis.
-✓ result-tier to allow result to communicate with db.
-✓ back-tier to allow worker to communicate with redis and db.
+<u> 3 networks</u> <br>
+✓ poll-tier to allow poll to communicate with redis.<br>
+✓ result-tier to allow result to communicate with db.<br>
+✓ back-tier to allow worker to communicate with redis and db.<br>
 
 You must use networks. Using the links property is forbidden.
 
-1 named volume:
-✓ db-data which allows the database’s data to be persistent, if the container dies.
+<u> 1 named volume </u> <br>
+✓ db-data which allows the database’s data to be persistent, if the container dies.<br>
 The path of data in the official PostgreSQL image is documented on Docker Hub.
 
 Once your docker-compose.yml is complete, you should be able to run all the services and access the
-different web pages:
-✓ Poll at http://localhost:5000;
-✓ and Result at http://localhost:5001.
+different web pages:<br>
+✓ Poll at http://localhost:5000; <br>
+✓ and Result at http://localhost:5001. <br>
 You should be able to vote on Poll’s page and see its effect on Result’s page.
 Your containers must restart automatically when they stop unexpectedly.
