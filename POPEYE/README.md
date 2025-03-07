@@ -28,7 +28,7 @@ The pool, worker and result elements must be configured using specific environme
 
 `Poll`
 
-- [x] REDIS_HOST: the hostname of the Redis service to connect to.
+✓ REDIS_HOST: the hostname of the Redis service to connect to.
 
 `Result`
 
@@ -96,11 +96,11 @@ Your Docker Compose file should contain 5 services:<br>
 – redirects port 5000 of the host to the port 80 of the container.<br>
 – correctly sets the necessary environment variable.<br>
 
-✓ <u> redis </u> <br>:
+✓ <u> redis </u> <br>
 – uses an existing official image of Redis 7;<br>
 – opens port 6379.<br>
 
-✓ <u> worker </u> <br>:
+✓ <u> worker </u> <br>
 – builds your worker image;<br>
 – correctly sets the same environment variables as both the poll and result services.<br>
 
@@ -129,8 +129,18 @@ You must use networks. Using the links property is forbidden.
 ✓ db-data which allows the database’s data to be persistent, if the container dies.<br>
 The path of data in the official PostgreSQL image is documented on Docker Hub.
 
+## HOW TO TEST 
+
 Once your docker-compose.yml is complete, you should be able to run all the services and access the
 different web pages:<br>
+
+In the terminal, go to the project folder and run:
+
+    ```sh
+    docker compose up -d 
+    ```
+Once launched, you can:
+
 ✓ Poll at http://localhost:5000; <br>
 ✓ and Result at http://localhost:5001. <br>
 You should be able to vote on Poll’s page and see its effect on Result’s page.
