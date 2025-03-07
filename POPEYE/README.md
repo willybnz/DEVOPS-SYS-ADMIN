@@ -1,8 +1,7 @@
 #
 
 ## POPEYE 
-![popeye](/pictures/Portrait.popeye.png)
-
+![popeye](pictures/Portrait.popeye.png)
 Popeye is a project that aims to introduce you to the basics of docker and docker compose.
 The goal of the project is to containerize and deploy a simple web application.
 
@@ -14,7 +13,7 @@ Worker (Java/Maven): Retrieves votes from Redis and saves them in PostgreSQL.
 PostgreSQL (Persistent database): Stores votes permanently.
 Result (Node.js): A web interface that displays the results of the votes.
 
-![application](/pictures/application.png)
+![application](pictures/application.png)
 
 The different codes are provided to you in the pool, result and worker folders.
 
@@ -22,48 +21,51 @@ The different codes are provided to you in the pool, result and worker folders.
 
 The pool, worker and result elements must be configured using specific environment variables described below:
 
-Poll
-✓ REDIS_HOST: the hostname of the Redis service to connect to.
-Result
-✓ POSTGRES_HOST: the hostname of the database service to connect to.
-✓ POSTGRES_PORT: the port the database service is listening on.
-✓ POSTGRES_DB: the name of the PostgreSQL database to connect to.
-✓ POSTGRES_USER: the user that will be used to connect to the database.
-✓ POSTGRES_PASSWORD: the password of the user that will be used to connect to the database.
-
-Worker
-The Worker uses the same environment variables as both Poll and Result.
-
-## DOCKER IAMGES
-
-You have to create 3 images.
-
-The specifications for each image are as described below.
-
 `Poll`
 
-The image must be based on a Python official image.
-The dependencies of the application can be installed using the following command:
-pip3 install -r requirements.txt
-The application must expose and run on the port 80, and can be started with:
-flask run --host=0.0.0.0 --port=80
+- [x] REDIS_HOST: the hostname of the Redis service to connect to.
 
 `Result`
 
-The image must be based on an official Node.js version 20 Alpine image.
-The application must expose and run on the port 80.
-The dependencies of the application can be installed using the following command:
-npm install
+✓ POSTGRES_HOST: the hostname of the database service to connect to. <br>
+✓ POSTGRES_PORT: the port the database service is listening on. <br>
+✓ POSTGRES_DB: the name of the PostgreSQL database to connect to. <br>
+✓ POSTGRES_USER: the user that will be used to connect to the database.<br>
+✓ POSTGRES_PASSWORD: the password of the user that will be used to connect to the database.<br>
 
 `Worker`
 
-The image will be built using a multi-stage build.
-First stage - compilation
-The first stage must be based on maven:3.9.6-eclipse-temurin-21-alpine and be named builder.
-It must be used to build (of course) and package the Worker application using the following
+The Worker uses the same environment variables as both Poll and Result.<br>
+
+## DOCKER IMAGES
+
+You have to create 3 images.
+The specifications for each image are as described below.
+`Poll`
+
+- The image must be based on a Python official image.
+- The dependencies of the application can be installed using the following command:
+- pip3 install -r requirements.txt
+- The application must expose and run on the port 80, and can be started with:
+- flask run --host=0.0.0.0 --port=80
+
+`Result`
+
+- The image must be based on an official Node.js version 20 Alpine image.
+- The application must expose and run on the port 80.
+- The dependencies of the application can be installed using the following command:
+- npm install
+
+`Worker`
+
+- The image will be built using a multi-stage build.
+- First stage - compilation
+- The first stage must be based on maven:3.9.6-eclipse-temurin-21-alpine and be named builder.
+- It must be used to build (of course) and package the Worker application using the following
 commands:
-- mvn dependency:resolve, from within the directory containing pom.xml;
-- then, mvn package, from within the directory containing the src directory.
+    mvn dependency:resolve, from within the directory containing pom.xml;
+    then, mvn package, from within the directory containing the src directory.
+
 It generates a file in the target directory named worker-jar-with-dependencies.jar (relative to your
 WORKDIR).
 Second stage - run
